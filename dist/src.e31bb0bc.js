@@ -122,16 +122,23 @@ var title = document.getElementById("title");
 var btnSave = document.getElementById("btn-save");
 var descrition = document.getElementById("descrition");
 var todoItems = document.getElementById("todo-items");
-console.log(todoItems);
-btnSave.addEventListener("click", handleSubmit);
-function handleSubmit() {
-  var titleValue = title.value;
-  var descritionValue = descrition.value;
 
-  //   addtoToTable();
+// btnSave.addEventListener("click", handleSubmit);
+
+// function handleSubmit() {
+//   let titleValue = title.value;
+//   let descritionValue = descrition.value;
+// }
+
+function addtoToTable() {
+  var todos = " \n          <tr>\n            <th>Todo</th>\n            <th>Status</th>\n            <th>Date</th>\n            <th>Update</th>\n            <th>Delete</th>\n          </tr>\n\n          <tr>\n            <td>practice saxohone</td>\n            <td><span class=\"status\">done</span></td>\n            <td>12/08/2024</td>\n            <td><button class=\"update-btn btn\">Update</button></td>\n            <td><button class=\"delete-btn btn\">Delete</button></td>\n          </tr>\n          <tr>\n            <td>practice saxohone</td>\n            <td>done</td>\n            <td>12/08/2024</td>\n            <td>update button</td>\n            <td>Delete</td>\n          </tr>";
+  var tableElement = document.getElementById("table");
+  tableElement.innerHTML = todos;
+  console.log(tableElement);
 }
-var todos = " \n         <tr>\n            <td>practice saxohone</td>\n            <td><span class=\"status\">done</span></td>\n            <td>12/08/2024</td>\n            <td><button class=\"update-btn btn\">Update</button></td>\n            <td><button class=\"delete-btn btn\">Delete</button></td>\n          </tr>\n          <tr>\n            <td>practice saxohone</td>\n            <td>done</td>\n            <td>12/08/2024</td>\n            <td>update button</td>\n            <td>Delete</td>\n          </tr>";
-todoItems.outerHTML = todos;
+window.onload = function () {
+  addtoToTable();
+};
 },{}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -157,7 +164,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61370" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51177" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

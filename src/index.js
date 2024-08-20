@@ -2,19 +2,25 @@ const title = document.getElementById("title");
 const btnSave = document.getElementById("btn-save");
 const descrition = document.getElementById("descrition");
 const todoItems = document.getElementById("todo-items");
-console.log(todoItems);
 
-btnSave.addEventListener("click", handleSubmit);
+// btnSave.addEventListener("click", handleSubmit);
 
-function handleSubmit() {
-  let titleValue = title.value;
-  let descritionValue = descrition.value;
+// function handleSubmit() {
+//   let titleValue = title.value;
+//   let descritionValue = descrition.value;
+// }
 
-  //   addtoToTable();
-}
+function addtoToTable() {
+  const todos = ` 
+          <tr>
+            <th>Todo</th>
+            <th>Status</th>
+            <th>Date</th>
+            <th>Update</th>
+            <th>Delete</th>
+          </tr>
 
-const todos = ` 
-         <tr>
+          <tr>
             <td>practice saxohone</td>
             <td><span class="status">done</span></td>
             <td>12/08/2024</td>
@@ -29,4 +35,12 @@ const todos = `
             <td>Delete</td>
           </tr>`;
 
-todoItems.outerHTML = todos;
+  const tableElement = document.getElementById("table");
+
+  tableElement.innerHTML = todos;
+  console.log(tableElement);
+}
+
+window.onload = function () {
+  addtoToTable();
+};
