@@ -34,10 +34,11 @@ body {
 
 .base-input {
   margin-bottom: 15px;
-  background-color: #081a51;
-  opacity: 10%;
+  background-color: rgba(8, 26, 81, 0.1);
+  border: none;
   width: 400px;
   height: 20px;
+  padding: 4px;
 }
 
 .description-input {
