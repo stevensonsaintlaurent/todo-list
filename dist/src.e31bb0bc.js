@@ -129,15 +129,57 @@ var todoItems = document.getElementById("todo-items");
 //   let titleValue = title.value;
 //   let descritionValue = descrition.value;
 // }
-
-function addtoToTable() {
-  var todos = " \n          <tr>\n            <th>Todo</th>\n            <th>Status</th>\n            <th>Date</th>\n            <th>Update</th>\n            <th>Delete</th>\n          </tr>\n\n          <tr>\n            <td>practice saxohone</td>\n            <td><span class=\"status\">done</span></td>\n            <td>12/08/2024</td>\n            <td><button class=\"update-btn btn\">Update</button></td>\n            <td><button class=\"delete-btn btn\">Delete</button></td>\n          </tr>\n          <tr>\n            <td>practice saxohone</td>\n            <td>done</td>\n            <td>12/08/2024</td>\n            <td>update button</td>\n            <td>Delete</td>\n          </tr>";
-  var tableElement = document.getElementById("table");
-  tableElement.innerHTML = todos;
-  console.log(tableElement);
+var container = document.getElementById("container");
+var todoData = [{
+  title: "Practice sax ",
+  status: "done",
+  date: new Date().toLocaleDateString()
+}, {
+  title: "go to gym",
+  status: "doing",
+  date: new Date().toLocaleDateString()
+}, {
+  title: "go to chopping",
+  status: "not started",
+  date: new Date().toLocaleDateString()
+}];
+function createtodoToTable() {
+  var table = document.createElement("table");
+  table.classList.add("table");
+  var headerRow = document.createElement("tr");
+  var keys = ["Todo", "Status", "Date", "Update", "Delete"];
+  keys.forEach(function (key) {
+    var th = document.createElement("th");
+    th.appendChild(document.createTextNode(key));
+    headerRow.appendChild(th);
+  });
+  table.appendChild(headerRow);
+  todoData.forEach(function (todoObj) {
+    var row = document.createElement("tr");
+    Object.values(todoObj).forEach(function (value) {
+      var td = document.createElement("td");
+      td.appendChild(document.createTextNode(value));
+      row.appendChild(td);
+    });
+    var tdbtn = document.createElement("td");
+    var updateBtn = document.createElement("button");
+    updateBtn.appendChild(document.createTextNode("Update"));
+    updateBtn.classList.add("update-btn", "btn");
+    tdbtn.appendChild(updateBtn);
+    var tdBtnDelete = document.createElement("td");
+    var deleteBnt = document.createElement("button");
+    deleteBnt.innerText = "Delete";
+    deleteBnt.classList.add("delete-btn", "btn");
+    tdBtnDelete.appendChild(deleteBnt);
+    row.append(tdbtn);
+    row.append(tdBtnDelete);
+    table.appendChild(row);
+  });
+  console.log(container);
+  container.appendChild(table);
 }
 window.onload = function () {
-  addtoToTable();
+  createtodoToTable();
 };
 },{}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -164,7 +206,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51177" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62625" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

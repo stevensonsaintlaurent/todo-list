@@ -9,38 +9,72 @@ const todoItems = document.getElementById("todo-items");
 //   let titleValue = title.value;
 //   let descritionValue = descrition.value;
 // }
+const container = document.getElementById("container");
 
-function addtoToTable() {
-  const todos = ` 
-          <tr>
-            <th>Todo</th>
-            <th>Status</th>
-            <th>Date</th>
-            <th>Update</th>
-            <th>Delete</th>
-          </tr>
+const todoData = [
+  {
+    title: "Practice sax ",
+    status: "done",
+    date: new Date().toLocaleDateString(),
+  },
+  {
+    title: "go to gym",
+    status: "doing",
+    date: new Date().toLocaleDateString(),
+  },
+  {
+    title: "go to chopping",
+    status: "not started",
+    date: new Date().toLocaleDateString(),
+  },
+];
 
-          <tr>
-            <td>practice saxohone</td>
-            <td><span class="status">done</span></td>
-            <td>12/08/2024</td>
-            <td><button class="update-btn btn">Update</button></td>
-            <td><button class="delete-btn btn">Delete</button></td>
-          </tr>
-          <tr>
-            <td>practice saxohone</td>
-            <td>done</td>
-            <td>12/08/2024</td>
-            <td>update button</td>
-            <td>Delete</td>
-          </tr>`;
+function createtodoToTable() {
+  const table = document.createElement("table");
+  table.classList.add("table");
+  const headerRow = document.createElement("tr");
 
-  const tableElement = document.getElementById("table");
+  const keys = ["Todo", "Status", "Date", "Update", "Delete"];
+  keys.forEach((key) => {
+    const th = document.createElement("th");
+    th.appendChild(document.createTextNode(key));
 
-  tableElement.innerHTML = todos;
-  console.log(tableElement);
+    headerRow.appendChild(th);
+  });
+
+  table.appendChild(headerRow);
+
+  todoData.forEach((todoObj) => {
+    const row = document.createElement("tr");
+    Object.values(todoObj).forEach((value) => {
+      const td = document.createElement("td");
+      td.appendChild(document.createTextNode(value));
+
+      row.appendChild(td);
+    });
+    const tdbtn = document.createElement("td");
+    const updateBtn = document.createElement("button");
+    updateBtn.appendChild(document.createTextNode("Update"));
+    updateBtn.classList.add("update-btn", "btn");
+
+    tdbtn.appendChild(updateBtn);
+
+    const tdBtnDelete = document.createElement("td");
+    const deleteBnt = document.createElement("button");
+    deleteBnt.innerText = "Delete";
+    deleteBnt.classList.add("delete-btn", "btn");
+
+    tdBtnDelete.appendChild(deleteBnt);
+
+    row.append(tdbtn);
+    row.append(tdBtnDelete);
+
+    table.appendChild(row);
+  });
+  console.log(container);
+  container.appendChild(table);
 }
 
 window.onload = function () {
-  addtoToTable();
+  createtodoToTable();
 };
