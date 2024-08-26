@@ -1,40 +1,34 @@
-const title = document.getElementById("title");
-const btnSave = document.getElementById("btn-save");
-const descrition = document.getElementById("descrition");
-const todoItems = document.getElementById("todo-items");
+let container;
 
-// btnSave.addEventListener("click", handleSubmit);
+// const todoData = [
+//   {
+//     title: "Practice sax ",
+//     descrition: "p",
+//     status: "done",
+//     date: new Date().toLocaleDateString(),
+//   },
+//   {
+//     title: "go to gym",
+//     descrition: "p",
+//     status: "doing",
+//     date: new Date().toLocaleDateString(),
+//   },
+//   {
+//     title: "go to chopping",
+//     descrition: "p",
+//     status: "not started",
+//     date: new Date().toLocaleDateString(),
+//   },
+// ];
 
-// function handleSubmit() {
-//   let titleValue = title.value;
-//   let descritionValue = descrition.value;
-// }
-const container = document.getElementById("container");
+export function createtodoToTable(todoData) {
+  console.log(todoData);
 
-const todoData = [
-  {
-    title: "Practice sax ",
-    status: "done",
-    date: new Date().toLocaleDateString(),
-  },
-  {
-    title: "go to gym",
-    status: "doing",
-    date: new Date().toLocaleDateString(),
-  },
-  {
-    title: "go to chopping",
-    status: "not started",
-    date: new Date().toLocaleDateString(),
-  },
-];
-
-function createtodoToTable() {
   const table = document.createElement("table");
   table.classList.add("table");
   const headerRow = document.createElement("tr");
 
-  const keys = ["Todo", "Status", "Date", "Update", "Delete"];
+  const keys = ["Todo", "Description", "Status", "Date", "Update", "Delete"];
   keys.forEach((key) => {
     const th = document.createElement("th");
     th.appendChild(document.createTextNode(key));
@@ -71,10 +65,11 @@ function createtodoToTable() {
 
     table.appendChild(row);
   });
-  console.log(container);
+  console.log("stevenson", container);
   container.appendChild(table);
 }
 
-window.onload = function () {
-  createtodoToTable();
-};
+window.addEventListener("load", function () {
+  container = document.getElementById("container");
+  // createtodoToTable();
+});

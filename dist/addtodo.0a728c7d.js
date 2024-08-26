@@ -187,7 +187,35 @@ window.addEventListener("load", function () {
   container = document.getElementById("container");
   // createtodoToTable();
 });
-},{}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{}],"addtodo.js":[function(require,module,exports) {
+"use strict";
+
+var _index = require("./index");
+window.addEventListener("load", function () {
+  var title = document.getElementById("title");
+  var btnSave = document.getElementById("btn-save");
+  var descrition = document.getElementById("descrition");
+  btnSave.addEventListener("click", handleSubmit, false);
+
+  //   createtodoToTable();
+});
+function handleSubmit(event) {
+  event.preventDefault();
+  var todos = [];
+  var titleValue = title.value;
+  var descritionValue = descrition.value;
+  var todoObj = {
+    title: titleValue,
+    description: descritionValue,
+    status: "not started",
+    date: new Date().toLocaleDateString()
+  };
+  todos.push(todoObj);
+  (0, _index.createtodoToTable)(todos);
+  window.location.href = "/index.html";
+  console.log(titleValue);
+}
+},{"./index":"index.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -356,5 +384,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../node_modules/parcel-bundler/src/builtins/hmr-runtime.js","index.js"], null)
-//# sourceMappingURL=/src.e31bb0bc.js.map
+},{}]},{},["../node_modules/parcel-bundler/src/builtins/hmr-runtime.js","addtodo.js"], null)
+//# sourceMappingURL=/addtodo.0a728c7d.js.map
