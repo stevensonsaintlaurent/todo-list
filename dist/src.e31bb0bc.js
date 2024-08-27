@@ -149,6 +149,7 @@ var container;
 
 function createtodoToTable(todoData) {
   console.log(todoData);
+  var container = document.getElementById("container");
   var table = document.createElement("table");
   table.classList.add("table");
   var headerRow = document.createElement("tr");
@@ -170,6 +171,7 @@ function createtodoToTable(todoData) {
     var updateBtn = document.createElement("button");
     updateBtn.appendChild(document.createTextNode("Update"));
     updateBtn.classList.add("update-btn", "btn");
+    updateBtn.addEventListener("click", updateTodo);
     tdbtn.appendChild(updateBtn);
     var tdBtnDelete = document.createElement("td");
     var deleteBnt = document.createElement("button");
@@ -183,10 +185,15 @@ function createtodoToTable(todoData) {
   console.log("stevenson", container);
   container.appendChild(table);
 }
-window.addEventListener("load", function () {
-  container = document.getElementById("container");
-  // createtodoToTable();
+window.addEventListener("DOMContentLoaded", function () {
+  // container = document.getElementById("container");
+  var todos = JSON.parse(localStorage.getItem("todos")) || [];
+  createtodoToTable(todos);
 });
+function updateTodo() {
+  var containerUpdate = document.getElementById("container-update");
+  containerUpdate.style.display = "flex";
+}
 },{}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -212,7 +219,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60731" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51004" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

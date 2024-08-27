@@ -23,6 +23,7 @@ let container;
 
 export function createtodoToTable(todoData) {
   console.log(todoData);
+  const container = document.getElementById("container");
 
   const table = document.createElement("table");
   table.classList.add("table");
@@ -50,6 +51,7 @@ export function createtodoToTable(todoData) {
     const updateBtn = document.createElement("button");
     updateBtn.appendChild(document.createTextNode("Update"));
     updateBtn.classList.add("update-btn", "btn");
+    updateBtn.addEventListener("click", updateTodo);
 
     tdbtn.appendChild(updateBtn);
 
@@ -69,7 +71,13 @@ export function createtodoToTable(todoData) {
   container.appendChild(table);
 }
 
-window.addEventListener("load", function () {
-  container = document.getElementById("container");
-  // createtodoToTable();
+window.addEventListener("DOMContentLoaded", () => {
+  // container = document.getElementById("container");
+  const todos = JSON.parse(localStorage.getItem("todos")) || [];
+  createtodoToTable(todos);
 });
+
+function updateTodo() {
+  const containerUpdate = document.getElementById("container-update");
+  containerUpdate.style.display = "flex";
+}

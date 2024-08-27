@@ -66,5 +66,60 @@ td {
   justify-content: right;
 }
 
+/* update my todo */
+.container-update {
+  display: none;
+  justify-content: center;
+}
+
+.div {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.divone {
+  width: 80%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+}
+.add-todo {
+  text-align: center;
+  color: #081a51;
+}
+
+.title-update,
+.description {
+  color: #081a51;
+  margin-bottom: 10px;
+}
+
+.base-input {
+  margin-bottom: 15px;
+  background-color: rgba(8, 26, 81, 0.1);
+  border: none;
+  width: 400px;
+  height: 20px;
+  padding: 4px;
+}
+
+.description-input {
+  height: 60px;
+}
+.btn-update {
+  right: 2px;
+  text-align: center;
+  width: 20%;
+  background-color: #081a51;
+  color: #f3f3f3;
+  border-radius: 8px;
+}
+
+.btn-container-update {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
 
 /*# sourceMappingURL=/styles.956d002c.css.map */

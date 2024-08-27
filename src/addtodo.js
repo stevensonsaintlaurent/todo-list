@@ -11,7 +11,7 @@ window.addEventListener("load", function () {
 
 function handleSubmit(event) {
   event.preventDefault();
-  let todos = [];
+  let todos = JSON.parse(localStorage.getItem("todos")) || [];
   let titleValue = title.value;
   let descritionValue = descrition.value;
   let todoObj = {
@@ -22,7 +22,8 @@ function handleSubmit(event) {
   };
   todos.push(todoObj);
 
-  createtodoToTable(todos);
+  // createtodoToTable(todos);
+  localStorage.setItem("todos", JSON.stringify(todos));
   window.location.href = "/index.html";
 
   console.log(titleValue);
