@@ -161,23 +161,29 @@ function createtodoToTable(todoData) {
   });
   table.appendChild(headerRow);
   todoData.forEach(function (todoObj) {
+    var keys = ["title", "description", "status", "date"];
     var row = document.createElement("tr");
-    Object.values(todoObj).forEach(function (value) {
+    keys.forEach(function (key) {
       var td = document.createElement("td");
-      td.appendChild(document.createTextNode(value));
+      td.appendChild(document.createTextNode(todoObj[key]));
       row.appendChild(td);
     });
     var tdbtn = document.createElement("td");
     var updateBtn = document.createElement("button");
     updateBtn.appendChild(document.createTextNode("Update"));
     updateBtn.classList.add("update-btn", "btn");
-    updateBtn.addEventListener("click", updateTodo);
+    updateBtn.addEventListener("click", function (event) {
+      return updateTodo(event, todoObj.id, todoData);
+    });
     tdbtn.appendChild(updateBtn);
     var tdBtnDelete = document.createElement("td");
     var deleteBnt = document.createElement("button");
     deleteBnt.innerText = "Delete";
     deleteBnt.classList.add("delete-btn", "btn");
     tdBtnDelete.appendChild(deleteBnt);
+    deleteBnt.addEventListener("click", function (event) {
+      return deleteTodo(event, todoObj.id, todoData);
+    });
     row.append(tdbtn);
     row.append(tdBtnDelete);
     table.appendChild(row);
@@ -190,9 +196,49 @@ window.addEventListener("DOMContentLoaded", function () {
   var todos = JSON.parse(localStorage.getItem("todos")) || [];
   createtodoToTable(todos);
 });
-function updateTodo() {
+function updateTodo(event, id, todoArray) {
+  var row = event.target.parentNode.parentNode;
+  var container = row.parentNode.parentNode.parentNode;
+  container.classList.add("hide");
   var containerUpdate = document.getElementById("container-update");
   containerUpdate.style.display = "flex";
+  var singleTodo = todoArray.find(function (todo) {
+    return todo.id == id;
+  });
+  document.getElementById("update-title").value = singleTodo.title;
+  document.getElementById("update-descrition").value = singleTodo.description;
+  document.getElementById("status-update").value = singleTodo.status;
+  var btn = document.getElementById("btn-save-update");
+  btn.addEventListener("click", function () {
+    return saveUpdate(singleTodo, todoArray, row);
+  });
+}
+function saveUpdate(singleTodo, todoArray, target) {
+  var title = document.getElementById("update-title").value;
+  var desctiption = document.getElementById("update-descrition").value;
+  var status = document.getElementById("status-update").value;
+  if (title == "" || desctiption == "" || status == "") {
+    return;
+  }
+  singleTodo.title = title;
+  singleTodo.description = desctiption;
+  singleTodo.status = status;
+  target.cells[0].innerHTML = title;
+  target.cells[1].innerHTML = desctiption;
+  target.cells[2].innerHTML = status;
+  var container = target.parentElement.parentElement.parentElement;
+  container.classList.remove("hide");
+  localStorage.setItem("todos", JSON.stringify(todoArray));
+  var containerUpdate = document.getElementById("container-update");
+  containerUpdate.style.display = "none";
+}
+function deleteTodo(event, id, todoArray) {
+  var row = event.target.parentElement.parentElement;
+  row.parentNode.removeChild(row);
+  var filteredArray = todoArray.filter(function (todo) {
+    return todo.id !== id;
+  });
+  localStorage.setItem("todos", JSON.stringify(filteredArray));
 }
 },{}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -219,7 +265,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51004" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64022" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

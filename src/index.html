@@ -54,28 +54,27 @@
     <div class="container-update" id="container-update">
       <div class="divone">
         <div class="div">
-          <h2 class="add-todo">Add your todo</h2>
+          <h2 class="add-todo">Update Todo</h2>
           <label for="title" class="title-update">Title</label>
           <input
             type="text"
-            id="title-update"
+            id="update-title"
             class="base-input"
             name="title"
           />
           <label for="description" class="description">Description</label>
           <input
             type="text"
-            id="descrition"
+            id="update-descrition"
             class="base-input description-input"
             name="description"
           />
-          <label for="title" class="title-update">Status</label>
-          <input
-            type="text"
-            id="title-update"
-            class="base-input"
-            name="title"
-          />
+          <label for="status-update" class="title-update">Status</label>
+          <select id="status-update" class="update-status" name="status">
+            <option value="Not started">Not Started</option>
+            <option value="Doing">Doing</option>
+            <option value="Done">Done</option>
+          </select>
           <div class="btn-container-update">
             <button class="btn-update" id="btn-save-update">Save</button>
           </div>
